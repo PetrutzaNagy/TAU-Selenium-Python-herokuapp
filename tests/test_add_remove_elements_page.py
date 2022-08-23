@@ -1,7 +1,6 @@
-import time
-from selenium.webdriver.common.by import By
 
 from pages.add_remove_elements_page import AddRemoveElementsPage
+import pytest
 
 
 def test_check_add_element_functionality(browser):
@@ -12,16 +11,19 @@ def test_check_add_element_functionality(browser):
     assert add_remove_page.isAddButtonDisplayed()
 
 
-
 def test_check_url():
     pass
 
-def test_title():
-    pass
+def test_title(browser):
+    add_remove_page = AddRemoveElementsPage(browser)
+    # deschidem o pagina
+    add_remove_page.load_page()
+    assert "Add/Remove Elements" == add_remove_page.getTitlePage()
 
 def test_link():
     pass
 
+@pytest.mark.pozitive
 def test_add_and_delete_functionality(browser):
     # deschidem o pagina
     browser.get('https://the-internet.herokuapp.com/add_remove_elements/')

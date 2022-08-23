@@ -4,14 +4,19 @@ import selenium.webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture
 def browser():
     #before tests
     global driver
     # initializam un browser
+    options = Options()
+    # options.add_argument('--headless')
     s = Service(ChromeDriverManager().install())
-    driver = selenium.webdriver.Chrome(service=s)
+    driver = selenium.webdriver.Chrome(service=s, chrome_options= options)
+    # driver = selenium.webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
     driver.maximize_window()
     driver.implicitly_wait(10)
     #return driver
