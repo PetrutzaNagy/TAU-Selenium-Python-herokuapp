@@ -18,3 +18,7 @@ class ContextMenuPage:
     def open_menu(self):
         actions = ActionChains(self.browser)
         actions.context_click(self.browser.find_element(*self.BOX)).perform()
+
+    def accept_alert(self):
+        alert = self.browser.switch_to.alert
+        alert.accept()
